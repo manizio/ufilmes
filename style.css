@@ -1,0 +1,282 @@
+* {
+    font-family:'Inter', 'system-ui';
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /*border: 1px solid
+    */
+  
+}
+
+
+body{
+    
+    background-color: #14181C;
+    color: blue;
+   
+}
+
+#id{
+    display: flex;
+}
+
+a{
+    display: flex;
+    color: white;
+    text-decoration: none;
+}
+#global{
+    display: flex;
+    flex-flow: column;
+    gap: 1.5rem;
+    
+}
+
+#logo{
+    padding-top: 3.5rem;
+    display: flex;
+    flex-flow: column;
+    gap: 5rem;
+    margin: auto;
+    width: 45%;
+    
+}
+
+#logo img{
+    border-radius: 0.65rem;
+}
+
+
+#moviesDiv{
+    color: white;
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+    
+    width: 100%;
+    
+    
+}
+
+#movieContainer{
+    color: purple;
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin: auto;
+    max-width: 10rem;
+    min-width: 10rem;
+    
+    
+}
+
+.movieLink{
+    color: orange;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+    
+    width: 100%;
+    
+
+}
+.movieLink img{
+
+    
+    background-color: #454647;
+    
+    border-radius: 0.3rem;
+    width: 100%;
+    min-height: fit-content;
+    
+    box-shadow: 1px 1px rgb(228, 223, 223)
+
+}
+.movieLink a{
+
+    text-align: center;
+    font-size: 0.75rem;
+    margin: auto;
+    color: white;
+    border-radius: 0.1rem;
+    
+}
+
+
+
+.formDiv{
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-flow: column-reverse;
+    margin: auto;
+}
+
+.formDiv label{
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    
+}
+
+.formDiv input{
+    width: 25%;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    margin: auto;
+}
+
+
+.paginaDetalhes{
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    display:flex;
+    flex-flow: row;
+
+    gap: 2rem;
+
+    height: 100%;
+    
+
+}
+
+#poster{
+    color: aquamarine;
+}
+
+#poster img{
+    
+    border-radius: 0.3rem;
+    display: flex;
+    height: 100%;
+    width: auto;
+    margin: auto;
+    
+    box-shadow: 1px 1px rgb(228, 223, 223)
+}
+
+#poster p{
+    font: 1rem;
+    color: white;
+    direction: rtl;
+    font-weight: bold;
+
+}
+
+#descricao{
+    gap: 1.3rem;
+    color:white;
+    display: flex;
+    flex-flow: column;
+    
+}
+#containerInformacoes{
+    
+    color: chocolate;
+    display: inline;
+    width: 100%;
+    flex-wrap: wrap;
+    
+}
+
+#titulo{
+    color: white;
+    display: inline;
+    
+    font-size: 2rem;
+    font-weight: bold;
+}
+#ano{
+    color: rgb(180, 181, 192);
+    
+    display: inline;
+}
+
+
+#diretor{
+    color: gray;
+    display: inline;
+    
+}
+#diretorNome{
+    color: rgb(180, 181, 192);
+    display:inline;
+}
+
+#plot {
+    text-align: justify;
+    width: 100%;
+    color: rgb(232, 233, 240);
+    font-size: 1rem;
+    display: flex;
+}
+
+#bodyPage{
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
+    margin: auto;
+    
+}
+
+#htmlPage{
+    min-height: 100%;
+    display: flex;
+    margin: auto;
+}
+
+
+.loading {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  
+    font-weight: 700;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 5px 5px #333333;
+  }
+  
+.loading:after {
+    content: " .";
+    animation: dots 1s steps(5, end) infinite;
+}
+  
+@keyframes dots {
+    0%,
+    20% {
+      color: rgba(0, 0, 0, 0);
+      text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+    }
+    40% {
+      color: white;
+      text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+    }
+    60% {
+      text-shadow: 0.25em 0 0 white, 0.5em 0 0 rgba(0, 0, 0, 0);
+    }
+    80%,
+    100% {
+      text-shadow: 0.25em 0 0 white, 0.5em 0 0 white;
+    }
+}
+
+#noresult{
+    color: white;
+    display: flex;
+    margin: auto;
+    
+}
