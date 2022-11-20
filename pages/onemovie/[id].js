@@ -11,7 +11,7 @@ export default function Movie(){
 
     const router = useRouter()
     const {id} = router.query
-    const {data, error} = useSWR(`http://www.omdbapi.com/?apikey=4029b34&i=${id}&plot=full`, fetcher) 
+    const {data, error} = useSWR(`https://www.omdbapi.com/?apikey=4029b34&i=${id}&plot=full`, fetcher) 
 
     if(error) return (<div>fetch error..</div>)
     if(!data) return (<div class="loading">loading...</div>)

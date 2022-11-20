@@ -87,3 +87,8 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+pages/cervejas/cervejas.js
+pages/index2.js
+pages/movies2.js
+pages/novaPagina.js
+pages/oldindex.js

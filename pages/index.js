@@ -19,7 +19,7 @@ export default function Movies3(){
         {
             e.preventDefault()
             let s = document.getElementById('search').value
-            if(state.url === '' || state.searchString === '') setState({url:'http://www.omdbapi.com', searchString: s})
+            if(state.url === '' || state.searchString === '') setState({url:'https://www.omdbapi.com', searchString: s})
             else setState({url: '', searchString: state.searchString})
 
         }
