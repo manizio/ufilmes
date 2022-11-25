@@ -1,14 +1,14 @@
 import useSWR from 'swr'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
 export default function Movies3(){
     const [state, setState] = useState({url:'', searchString:''})
-    const {data, error} = useSWR(state.url, async (u) => {
-        if (!state.url || !state.searchString) return {Search: ''}
-        if (state.url === '' || state.searchString === '') return {Search: ''}
+    const {data, error} = useSWR(state, async (u) => {
+        if (!u.url || !u.searchString) return {Search: ''}
+        if (u.url === '' || u.searchString === '') return {Search: ''}
 
-        const res = await fetch(`${state.url}/?apikey=4029b34&s=${state.searchString}&type=movie`)
+        const res = await fetch(`${u.url}/?apikey=4029b34&s=${u.searchString}&type=movie`)
         const json = await res.json()
 
         return json
@@ -18,9 +18,7 @@ export default function Movies3(){
         if (e.key === 'Enter')
         {
             e.preventDefault()
-            let s = document.getElementById('search').value
-            if(state.url === '' || state.searchString === '') setState({url:'https://www.omdbapi.com', searchString: s})
-            else setState({url: '', searchString: state.searchString})
+            setState({url:'https://www.omdbapi.com', searchString: e.target.value})
 
         }
     }
@@ -43,13 +41,21 @@ export default function Movies3(){
 //<TheLink id="link" url={state.url} handler = {onClickHandler}/>
 
 export function TheMovies({data, show}){
+
+    const [state, setState] = useState({all: [], filter:[]})
+
+    useEffect(() => {
+        setState({all: data.Search, filter:[]})
+    }, [data])
+
+
     if (!show) return (<div></div>)
-    if(data.error) return (<div>falha na requisição...</div>)
-    if(data.Search === '') return (<div>carregando...</div>)
-    if (!data.Search) return (<div id="noresult"><p>Nenhum resultado encontrado</p></div>)
+    if(state.error) return (<div>falha na requisição...</div>)
+    if(state.all === '') return (<div id="loading">carregando</div>)
+    if (!state.all) return (<div id="noresult"><p>Nenhum resultado encontrado</p></div>)
     return(
         <div class="movieLink">
-            {data.Search.map(m => 
+            {state.all.map(m => 
             <div id="movieContainer">
                 <img src={m.Poster}></img>
                 <Link id="link" href={`/onemovie/${m.imdbID}`}>{m.Title}</Link>
