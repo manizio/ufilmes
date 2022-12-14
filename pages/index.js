@@ -18,6 +18,9 @@ export default function Movies3(){
         if (e.key === 'Enter')
         {
             e.preventDefault()
+
+            if (!e.target.value) return alert("Campo de pesquisa necessário!")
+
             setState({url:'https://www.omdbapi.com', searchString: e.target.value})
 
         }
@@ -30,7 +33,7 @@ export default function Movies3(){
             </div>
             <TheForm handler={onClickHandler}/>
             <div id="moviesDiv">
-                <TheMovies data={error? {error:'Erro na pesquisa'}: data ? data:{Search:''}} show={state.url!==''}/>
+                <TheFilter data={error ? {error: 'Erro na pesquisa'}: data ? data:{Search: ''} } url={state.url} />
             </div>
 
         </div>
@@ -40,19 +43,26 @@ export default function Movies3(){
 
 //<TheLink id="link" url={state.url} handler = {onClickHandler}/>
 
-export function TheMovies({data, show}){
+export function TheMovies({data, show, f}){
 
     const [state, setState] = useState({all: [], filter:[]})
 
     useEffect(() => {
-        setState({all: data.Search, filter:[]})
-    }, [data])
+        setState({all: data.Search, filter: f})
+    }, [data, f])
 
 
     if (!show) return (<div></div>)
     if(state.error) return (<div>falha na requisição...</div>)
     if(state.all === '') return (<div id="loading">carregando</div>)
     if (!state.all) return (<div id="noresult"><p>Nenhum resultado encontrado</p></div>)
+
+    if(state.filter === 'cresc'){
+        state.all.sort((a,b) => a.Title.localeCompare(b.Title))
+    } else if(state.filter === 'dec'){
+        state.all.sort((a,b) => -1 * a.Title.localeCompare(b.Title))
+    }
+
     return(
         <div class="movieLink">
             {state.all.map(m => 
@@ -63,6 +73,30 @@ export function TheMovies({data, show}){
             </div>
             )}
         </div>
+    )
+}
+
+export function TheFilter({data, url}){
+
+    const [state, setState] = useState({f: []})
+
+    const handleChange = (e) =>{
+        setState({f: e.target.value})        
+    }
+
+    return(
+        <div id="filtroContainer">
+            <form>
+                <label htmlFor="filtro">Filtro: </label>
+                <select id="filtro" name="filtro" onChange={handleChange}>
+                    <option value="" selected disabled hidden>Filtrar</option>
+                    <option value="cresc">Crescente</option>
+                    <option value="dec">Decrescente</option>
+                </select>
+            </form>
+            <TheMovies data={data} show = {url !== ''} f=  {state.f}/>
+        </div>
+
     )
 }
 
@@ -79,7 +113,7 @@ export function TheForm({handler}){
         <div class="formDiv">
             <form>
                 <label htmlFor='search'>Procurar Filme</label>
-                <input id="search" name="search" type="text" placeholder='Pesquisar' autoComplete='true' onKeyDown={handler}></input>
+                <input id="search" name="search" type="text" placeholder='Pesquisar' autoComplete='true' onKeyDown={handler} ></input>
             </form>
         </div>
     )
